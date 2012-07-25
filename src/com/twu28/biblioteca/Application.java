@@ -2,30 +2,22 @@ package com.twu28.biblioteca;
 
 import java.io.*;
 import java.util.*;
-/**
- * Created with IntelliJ IDEA.
- * User: prashu
- * Date: 23/7/12
- * Time: 9:50 AM
- * To change this template use File | Settings | File Templates.
- */
+
 // TODO - replace all static methods. Static is EVIL.
-public class ApplicationUI {
+public class Application {
 
     private static List<Book> Books;
     private static List<Customer> Customers;
 
-    private static void PopulateBooks(){
+    private void PopulateBooks(){
         for(int i=0;i<10;i++)
         {
             Book MyBook = new Book(i+"","BOOK"+i);
-           // MyBook.setAvailable(true);
-           // MyBook.setReserved(false);
             Books.add(MyBook);
         }
     }
 
-    private static void PopulateCustomers(){
+    private void PopulateCustomers(){
         for(int i=0;i<10;i++)
         {
             Customer MyCustomer = new Customer(i+"","CUSTOMER"+i);
@@ -33,14 +25,14 @@ public class ApplicationUI {
         }
     }
 
-    public static void Initialize(){
+    public void Initialize(){
         Books = new ArrayList<Book>();
         Customers = new ArrayList<Customer>();
         PopulateBooks();
         PopulateCustomers();
     }
 
-    public static String readInput(){
+    public String readInput(){
         BufferedReader readInput = new BufferedReader(new InputStreamReader(System.in));
         try{
             return readInput.readLine();
@@ -49,7 +41,7 @@ public class ApplicationUI {
         return "";
     }
 
-    private static Book getBookById(String BookId){
+    private Book getBookById(String BookId){
         for(Book EachBook : Books)
         {
             if(EachBook.getBookId().equals(BookId))
@@ -58,7 +50,7 @@ public class ApplicationUI {
         return null;
     }
 
-    private static Customer getCustomerByLibraryNumber(String LibraryNumber){
+    private Customer getCustomerByLibraryNumber(String LibraryNumber){
         for(Customer EachCustomer : Customers)
         {
             if(EachCustomer.getLibraryNumber().equals(LibraryNumber))
@@ -67,7 +59,7 @@ public class ApplicationUI {
         return null;
     }
 
-    public static void displayBooks(){
+    public void displayBooks(){
         for(Book EachBook : Books)
         {
             System.out.println("\n"+EachBook.getBookId()+"  :   "+EachBook.getBookName());
@@ -75,7 +67,7 @@ public class ApplicationUI {
     }
 
     // TODO - simplify method to make it easily understandable
-    public static void reserveBook(){
+    public void reserveBook(){
         System.out.print("Enter The Book Id   :   ");
         String BookId = readInput();
         System.out.println("Enter the Library Number before Reserving Book   :   ");
@@ -90,7 +82,7 @@ public class ApplicationUI {
             System.out.println("Sorry We don't have that book yet");
     }
 
-    public static void getLibraryNumber(){
+    public void getLibraryNumber(){
         System.out.println("Enter The Library Number   :    ");
         String LibraryNumber = readInput();
         Customer CustomerOfInterest = getCustomerByLibraryNumber(LibraryNumber);
