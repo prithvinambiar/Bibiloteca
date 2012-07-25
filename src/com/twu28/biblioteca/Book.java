@@ -7,8 +7,9 @@ package com.twu28.biblioteca;
  * Time: 10:01 PM
  * To change this template use File | Settings | File Templates.
  */
+// TODO - remove template comments
 public class Book {
-
+    // TODO - follow java conentions in naming variables
     private String BookId;
     private String BookName;
     private boolean Reserved;
@@ -40,7 +41,7 @@ public class Book {
     private void setBookHolder(Customer customer){
         this.BookHolder = customer;
     }
-
+    // good, not breaking encapsulation here.
     public boolean reserveBook(Customer customer){
         if(this.isReserved())
             return false;

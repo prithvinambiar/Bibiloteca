@@ -9,7 +9,10 @@ import java.io.Console;
  * Time: 6:14 PM
  * To change this template use File | Settings | File Templates.
  */
+// TODO - remove template comments
 public class Launch {
+    // TODO - reformat code based no Java conventions
+    // TODO - why static methods ?
     private static void findInputAction(int Number){
         switch (Number){
             case 1 :    ApplicationUI.displayBooks();
@@ -25,6 +28,8 @@ public class Launch {
 
     public  static void main(String [] args)
     {
+        // TODO - static forces you to follow a pattern like Initialize. Should avoid this pattern.
+        // TODO - static forces global state which is EVIL.
         ApplicationUI.Initialize();
         System.out.println("Welcome to Bibiloteca");
         while (true){

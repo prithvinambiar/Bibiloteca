@@ -9,6 +9,7 @@ import java.util.*;
  * Time: 9:50 AM
  * To change this template use File | Settings | File Templates.
  */
+// TODO - replace all static methods. Static is EVIL.
 public class ApplicationUI {
 
     private static List<Book> Books;

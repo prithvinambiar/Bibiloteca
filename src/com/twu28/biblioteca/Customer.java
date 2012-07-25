@@ -29,6 +29,7 @@ public class Customer {
         return LibraryNumber;
     }
 
+    // TODO - breaking encapsulation, rather delegate required behavior to Customer
     public List<Book> getBookCollection(){
         return BookCollection;
     }
