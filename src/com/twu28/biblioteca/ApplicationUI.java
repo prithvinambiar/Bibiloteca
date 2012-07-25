@@ -74,6 +74,7 @@ public class ApplicationUI {
         }
     }
 
+    // TODO - simplify method to make it easily understandable
     public static void reserveBook(){
         System.out.print("Enter The Book Id   :   ");
         String BookId = readInput();

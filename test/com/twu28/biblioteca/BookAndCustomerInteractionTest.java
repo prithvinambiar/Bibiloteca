@@ -25,6 +25,7 @@ public class BookAndCustomerInteractionTest extends TestCase {
     protected void setUp() throws Exception {
         book = new Book("Id1","Java");
         customer = new Customer("Num1","Prithvi");
+        // TODO - naming convention
         MockedCustomer = mock(Customer.class);
     }
 

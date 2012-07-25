@@ -8,11 +8,12 @@ package com.twu28.biblioteca;
  * To change this template use File | Settings | File Templates.
  */
 import java.util.*;
-
+// TODO - remove customer since not used functionally.
 public class Customer {
-
+    // TODO - naming convention
     private String CustomerName;
     private String LibraryNumber;
+    // TODO - use generics properly, have List<Book>
     private List BookCollection;
 
     public  Customer(String LibraryNumber,String CustomerName){

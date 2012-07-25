@@ -25,11 +25,13 @@ public class CustomerTests extends TestCase {
     }
 
     public void testFindingLibraryNumber() throws Exception {
+        // TODO - no point testing getters.
         String ExpectedId = customer.getLibraryNumber();
         assertEquals(ExpectedId,"LibraryNumber");
     }
 
     public void testFindingCustomerName() throws Exception{
+        // TODO - no point testing getters.
         String ExpectedId = customer.getCustomerName();
         assertEquals(ExpectedId,"CustomerName");
     }

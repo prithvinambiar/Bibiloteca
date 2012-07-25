@@ -10,6 +10,7 @@ import java.io.Console;
  * To change this template use File | Settings | File Templates.
  */
 // TODO - remove template comments
+// TODO - write test for Launch
 public class Launch {
     // TODO - reformat code based no Java conventions
     // TODO - why static methods ?
