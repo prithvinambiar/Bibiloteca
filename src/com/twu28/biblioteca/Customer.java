@@ -1,12 +1,5 @@
 package com.twu28.biblioteca;
 
-/**
- * Created with IntelliJ IDEA.
- * User: prashu
- * Date: 22/7/12
- * Time: 10:41 PM
- * To change this template use File | Settings | File Templates.
- */
 import java.util.*;
 // TODO - remove customer since not used functionally.
 public class Customer {

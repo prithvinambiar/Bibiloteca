@@ -1,43 +1,48 @@
 package com.twu28.biblioteca;
 
-import java.io.Console;
-
-/**
- * Created with IntelliJ IDEA.
- * User: prashu
- * Date: 22/7/12
- * Time: 6:14 PM
- * To change this template use File | Settings | File Templates.
- */
 // TODO - remove template comments
 // TODO - write test for Launch
 public class Launch {
     // TODO - reformat code based no Java conventions
     // TODO - why static methods ?
-    private static void findInputAction(int Number){
-        switch (Number){
-            case 1 :    ApplicationUI.displayBooks();
-                        break;
-            case 2 :    ApplicationUI.reserveBook();
-                        break;
-            case 3 :    ApplicationUI.getLibraryNumber();
-                        break;
-            case 4 :    System.exit(0);
-            default:    System.out.println("Please Select a Valid Option");
+    private Application application;
+
+    private boolean findInputAction(int Number) {
+        switch (Number) {
+            case 1:
+                application.displayBooks();
+                return true;
+            case 2:
+                application.reserveBook();
+                return true;
+            case 3:
+                application.getLibraryNumber();
+                return true;
+            case 4:
+                return false;
+            default:
+                System.out.println("Please Select a Valid Option");
+                return true;
         }
     }
 
-    public  static void main(String [] args)
-    {
-        // TODO - static forces you to follow a pattern like Initialize. Should avoid this pattern.
-        // TODO - static forces global state which is EVIL.
-        ApplicationUI.Initialize();
+    private void initialize() {
+        boolean controlWhileLoop = true;
+
+        application = new Application();
         System.out.println("Welcome to Bibiloteca");
-        while (true){
+        while (controlWhileLoop) {
             System.out.println("1- View All Books\n2- Reserve a Book\n3- Check Library Number\n4- Exit\nEnter your choice -");
-            String Input = ApplicationUI.readInput();
-            findInputAction(Integer.parseInt(Input));
+            String Input = application.readInput();
+            controlWhileLoop = findInputAction(Integer.parseInt(Input));
 
         }
+    }
+
+    public static void main(String[] args) {
+        // TODO - static forces you to follow a pattern like initialize. Should avoid this pattern.
+        // TODO - static forces global state which is EVIL.
+
+        new Launch().initialize();
     }
 }

@@ -1,96 +1,101 @@
 package com.twu28.biblioteca;
 
-import java.io.*;
-import java.util.*;
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.List;
 
 // TODO - replace all static methods. Static is EVIL.
 public class Application {
 
-    private static List<Book> Books;
-    private static List<Customer> Customers;
+    private static List<Book> bookList;
+    private static List<Customer> customerList;
 
-    private void PopulateBooks(){
-        for(int i=0;i<10;i++)
-        {
-            Book MyBook = new Book(i+"","BOOK"+i);
-            Books.add(MyBook);
+    private void populateBooks() {
+        for (int iterator = 0; iterator < 10; iterator++) {
+            Book myBook = new Book(iterator + "", "BOOK" + iterator);
+            bookList.add(myBook);
         }
     }
 
-    private void PopulateCustomers(){
-        for(int i=0;i<10;i++)
-        {
-            Customer MyCustomer = new Customer(i+"","CUSTOMER"+i);
-            Customers.add(MyCustomer);
+    private void populateCustomers() {
+        for (int iterator = 0; iterator < 10; iterator++) {
+            Customer myCustomer = new Customer(iterator + "", "CUSTOMER" + iterator);
+            customerList.add(myCustomer);
         }
     }
 
-    public void Initialize(){
-        Books = new ArrayList<Book>();
-        Customers = new ArrayList<Customer>();
-        PopulateBooks();
-        PopulateCustomers();
+    public Application() {
+        bookList = new ArrayList<Book>();
+        customerList = new ArrayList<Customer>();
+        populateBooks();
+        populateCustomers();
     }
 
-    public String readInput(){
+    public String readInput() {
         BufferedReader readInput = new BufferedReader(new InputStreamReader(System.in));
-        try{
+        try {
             return readInput.readLine();
-        }
-        catch (Exception e){System.out.println("Exception while reading from console. Exception details - "+e.getMessage());}
-        return "";
-    }
-
-    private Book getBookById(String BookId){
-        for(Book EachBook : Books)
-        {
-            if(EachBook.getBookId().equals(BookId))
-                return EachBook;
+        } catch (Exception e) {
+            System.out.println("Exception while reading from console. Exception details - " + e.getMessage());
         }
         return null;
     }
 
-    private Customer getCustomerByLibraryNumber(String LibraryNumber){
-        for(Customer EachCustomer : Customers)
-        {
-            if(EachCustomer.getLibraryNumber().equals(LibraryNumber))
-                return EachCustomer;
+    private Book getBookById(String bookId) {
+        for (Book eachBook : bookList) {
+            if (eachBook.getBookId().equals(bookId))
+                return eachBook;
         }
         return null;
     }
 
-    public void displayBooks(){
-        for(Book EachBook : Books)
-        {
-            System.out.println("\n"+EachBook.getBookId()+"  :   "+EachBook.getBookName());
+    private Customer getCustomerByLibraryNumber(String libraryNumber) {
+        for (Customer eachCustomer : customerList) {
+            if (eachCustomer.getLibraryNumber().equals(libraryNumber))
+                return eachCustomer;
+        }
+        return null;
+    }
+
+    public void displayBooks() {
+        for (Book eachBook : bookList) {
+            System.out.println("\n" + eachBook.getBookId() + "  :   " + eachBook.getBookName());
         }
     }
 
-    // TODO - simplify method to make it easily understandable
-    public void reserveBook(){
+    private Customer getCustomer() {
+        System.out.println("Enter the Library Number  :   ");
+        String libraryNumber = readInput();
+        return getCustomerByLibraryNumber(libraryNumber);
+    }
+
+    private Book getBook() {
         System.out.print("Enter The Book Id   :   ");
-        String BookId = readInput();
-        System.out.println("Enter the Library Number before Reserving Book   :   ");
-        String LibraryNumber = readInput();
-        Book BookOfInterest = getBookById(BookId);
-        Customer customer = getCustomerByLibraryNumber(LibraryNumber);
+        String bookId = readInput();
+        return getBookById(bookId);
+    }
 
-        boolean IsReserved = BookOfInterest.reserveBook(customer);
-        if(IsReserved)
+    private void reserveAndInform(Book bookOfInterest, Customer customer) {
+        boolean isReserved = bookOfInterest.reserveBook(customer);
+        if (isReserved)
             System.out.println("Thank you ! Enjoy the book");
         else
             System.out.println("Sorry We don't have that book yet");
     }
 
-    public void getLibraryNumber(){
-        System.out.println("Enter The Library Number   :    ");
-        String LibraryNumber = readInput();
-        Customer CustomerOfInterest = getCustomerByLibraryNumber(LibraryNumber);
-        if(CustomerOfInterest == null)
-        {
+    // TODO - simplify method to make it easily understandable
+    public void reserveBook() {
+        Book bookOfInterest = getBook();
+        Customer customer = getCustomer();
+        reserveAndInform(bookOfInterest, customer);
+    }
+
+    public void getLibraryNumber() {
+        Customer customerOfInterest = getCustomer();
+        if (customerOfInterest == null) {
             System.out.println("Sorry! Customer with such library number doesn't exist");
-        }
-        else
+        } else
             System.out.println("Please talk to Librarian. Thank You");
     }
 }
