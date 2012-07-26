@@ -7,28 +7,27 @@ import java.util.List;
 
 public class Application {
 
-    private static List<Book> bookList;
-    private static List<Customer> customerList;
+    private List<Book> bookList;
+    private List<Integer> libraryNumber;
 
     private void populateBooks() {
-        for (int iterator = 0; iterator < 10; iterator++) {
+        for (int iterator = 1; iterator < 10; iterator++) {
             Book myBook = new Book(iterator + "", "BOOK" + iterator);
             bookList.add(myBook);
         }
     }
 
-    private void populateCustomers() {
-        for (int iterator = 0; iterator < 10; iterator++) {
-            Customer myCustomer = new Customer(iterator + "", "CUSTOMER" + iterator);
-            customerList.add(myCustomer);
+    private void populateLibraryNumbers() {
+        for (int iterator = 1; iterator < 10; iterator++) {
+            libraryNumber.add(iterator);
         }
     }
 
     public Application() {
         bookList = new ArrayList<Book>();
-        customerList = new ArrayList<Customer>();
+        libraryNumber = new ArrayList<Integer>();
         populateBooks();
-        populateCustomers();
+        populateLibraryNumbers();
     }
 
     public String readInput() {
@@ -49,12 +48,12 @@ public class Application {
         return null;
     }
 
-    private Customer getCustomerByLibraryNumber(String libraryNumber) {
-        for (Customer eachCustomer : customerList) {
-            if (eachCustomer.getLibraryNumber().equals(libraryNumber))
-                return eachCustomer;
-        }
-        return null;
+    private boolean getCustomerByLibraryNumber(String libraryNumber) {
+        boolean isCustomerPresent = this.libraryNumber.contains(Integer.parseInt(libraryNumber));
+        if (isCustomerPresent)
+            return true;
+        else
+            return false;
     }
 
     public void displayBooks() {
@@ -63,7 +62,7 @@ public class Application {
         }
     }
 
-    private Customer getCustomer() {
+    private boolean getCustomer() {
         System.out.println("Enter the Library Number  :   ");
         String libraryNumber = readInput();
         return getCustomerByLibraryNumber(libraryNumber);
@@ -75,9 +74,8 @@ public class Application {
         return getBookById(bookId);
     }
 
-    private void reserveAndInform(Book bookOfInterest, Customer customer) {
-        boolean isReserved = bookOfInterest.reserveBook(customer);
-        if (isReserved)
+    private void reserveAndInform(Book bookOfInterest) {
+        if (bookOfInterest.reserveBook())
             System.out.println("Thank you ! Enjoy the book");
         else
             System.out.println("Sorry We don't have that book yet");
@@ -85,15 +83,14 @@ public class Application {
 
     public void reserveBook() {
         Book bookOfInterest = getBook();
-        Customer customer = getCustomer();
-        reserveAndInform(bookOfInterest, customer);
+        reserveAndInform(bookOfInterest);
     }
 
     public void getLibraryNumber() {
-        Customer customerOfInterest = getCustomer();
-        if (customerOfInterest == null) {
-            System.out.println("Sorry! Customer with such library number doesn't exist");
-        } else
+        boolean isUserPresent = getCustomer();
+        if (isUserPresent) {
             System.out.println("Please talk to Librarian. Thank You");
+        } else
+            System.out.println("Sorry! User with such library number doesn't exist");
     }
 }

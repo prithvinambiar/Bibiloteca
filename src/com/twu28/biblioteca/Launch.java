@@ -4,7 +4,11 @@ public class Launch {
 
     private Application application;
 
-    private boolean findInputAction(int number) {
+    public Launch(Application application) {
+        this.application = application;
+    }
+
+    public boolean findInputAction(int number) {
         switch (number) {
             case 1:
                 application.displayBooks();
@@ -23,20 +27,23 @@ public class Launch {
         }
     }
 
-    private void initialize() {
+    private void interactWithUser() {
         boolean controlWhileLoop = true;
 
-        application = new Application();
-        System.out.println("Welcome to Bibiloteca");
-        while (controlWhileLoop) {
-            System.out.println("1- View All Books\n2- Reserve a Book\n3- Check Library Number\n4- Exit\nEnter your choice -");
+        System.out.println("Welcome to Biblioteca");
+        do {
+            System.out.print("1- View All Books\n2- Reserve a Book\n3- Check Library Number\n4- Exit\nEnter your choice - ");
             String input = application.readInput();
-            controlWhileLoop = findInputAction(Integer.parseInt(input));
-
-        }
+            try {
+                controlWhileLoop = findInputAction(Integer.parseInt(input));
+            } catch (Exception e) {
+                System.out.println("Please Enter The Number Between 1-4");
+            }
+        } while (controlWhileLoop);
     }
 
     public static void main(String[] args) {
-        new Launch().initialize();
+        Launch launch = new Launch(new Application());
+        launch.interactWithUser();
     }
 }
