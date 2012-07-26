@@ -5,7 +5,6 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 
-// TODO - replace all static methods. Static is EVIL.
 public class Application {
 
     private static List<Book> bookList;
@@ -84,7 +83,6 @@ public class Application {
             System.out.println("Sorry We don't have that book yet");
     }
 
-    // TODO - simplify method to make it easily understandable
     public void reserveBook() {
         Book bookOfInterest = getBook();
         Customer customer = getCustomer();

@@ -1,14 +1,11 @@
 package com.twu28.biblioteca;
 
-// TODO - remove template comments
-// TODO - write test for Launch
 public class Launch {
-    // TODO - reformat code based no Java conventions
-    // TODO - why static methods ?
+
     private Application application;
 
-    private boolean findInputAction(int Number) {
-        switch (Number) {
+    private boolean findInputAction(int number) {
+        switch (number) {
             case 1:
                 application.displayBooks();
                 return true;
@@ -33,16 +30,13 @@ public class Launch {
         System.out.println("Welcome to Bibiloteca");
         while (controlWhileLoop) {
             System.out.println("1- View All Books\n2- Reserve a Book\n3- Check Library Number\n4- Exit\nEnter your choice -");
-            String Input = application.readInput();
-            controlWhileLoop = findInputAction(Integer.parseInt(Input));
+            String input = application.readInput();
+            controlWhileLoop = findInputAction(Integer.parseInt(input));
 
         }
     }
 
     public static void main(String[] args) {
-        // TODO - static forces you to follow a pattern like initialize. Should avoid this pattern.
-        // TODO - static forces global state which is EVIL.
-
         new Launch().initialize();
     }
 }
