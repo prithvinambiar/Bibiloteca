@@ -26,7 +26,12 @@ public class UserTest {
 
     @Test(expected = IllegalArgumentException.class)
     public void testSetUsername() throws Exception {
-        user = new User("1111111", "password");
+        User invalidUser = new User("1111111", "password");
     }
 
+    public void testIsUserLibrarian() throws Exception {
+        assertEquals(user.isUserLibrarian(), true);
+        User anotherUser = new User("111-1114", "password");
+        assertEquals(anotherUser.isUserLibrarian(), false);
+    }
 } 

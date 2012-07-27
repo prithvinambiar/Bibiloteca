@@ -4,6 +4,7 @@ public class User {
     private String username;
     private String password;
     private String regularExpression;
+    private static final String librarianUsername = "111-1111";
 
     public User() {
         regularExpression = "[0-9]{3}-{1}[0-9]{4}";
@@ -28,6 +29,13 @@ public class User {
 
     public boolean confirmAuthentication(String username, String password) {
         if (this.username.equals(username) && this.password.equals(password))
+            return true;
+        else
+            return false;
+    }
+
+    public boolean isUserLibrarian() {
+        if (this.username.equals(librarianUsername))
             return true;
         else
             return false;
