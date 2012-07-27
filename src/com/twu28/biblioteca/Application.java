@@ -106,12 +106,20 @@ public class Application {
             loggedInUser = user;
     }
 
+    private String readPassword() {
+        if (System.console() != null) {
+            char passwordArray[] = System.console().readPassword();
+            return new String(passwordArray);
+        }
+        return readInput();
+    }
+
     private void getCredentialsAndAuthenticate() {
         User user;
         System.out.print("Enter the username   :   ");
         String username = readInput();
         System.out.print("Enter the password   :    ");
-        String password = readInput();
+        String password = readPassword();
         user = findUserByUsername(username);
         authenticateUser(user, username, password);
     }
