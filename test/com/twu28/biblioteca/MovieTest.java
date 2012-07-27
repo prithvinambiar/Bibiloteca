@@ -4,11 +4,16 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.lang.reflect.Method;
+
+import static org.junit.Assert.assertEquals;
 
 public class MovieTest {
+    private Movie movie;
 
     @Before
     public void before() throws Exception {
+        movie = new Movie("New Movie", "Director");
     }
 
     @After
@@ -17,17 +22,10 @@ public class MovieTest {
 
     @Test
     public void testSetRating() throws Exception {
-
-/* 
-try { 
-   Method method = Movie.getClass().getMethod("setRating", int.class); 
-   method.setAccessible(true); 
-   method.invoke(<Object>, <Parameters>); 
-} catch(NoSuchMethodException e) { 
-} catch(IllegalAccessException e) { 
-} catch(InvocationTargetException e) { 
-} 
-*/
+        Method method = Movie.class.getDeclaredMethod("setRating", int.class);
+        method.setAccessible(true);
+        method.invoke(movie, 20);
+        assertEquals(movie.getRating(), 0);
     }
 
 } 

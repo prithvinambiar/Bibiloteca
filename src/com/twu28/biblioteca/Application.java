@@ -79,11 +79,11 @@ public class Application {
         return getBookById(bookId);
     }
 
-    private void reserveAndInform(Book bookOfInterest) {
+    private boolean reserveAndInform(Book bookOfInterest) {
         if (bookOfInterest == null || !bookOfInterest.reserveBook())
-            System.out.println("Sorry We don't have that book yet");
+            return false;
         else
-            System.out.println("Thank you ! Enjoy the book");
+            return true;
     }
 
     private void printRating(Movie eachMovie) {
@@ -120,7 +120,11 @@ public class Application {
 
     public void reserveBook() {
         Book bookOfInterest = getBook();
-        reserveAndInform(bookOfInterest);
+        boolean isReserved = reserveAndInform(bookOfInterest);
+        if (isReserved)
+            System.out.println("Sorry We don't have that book yet");
+        else
+            System.out.println("Thank you ! Enjoy the book");
     }
 
     public void getLibraryNumber() {

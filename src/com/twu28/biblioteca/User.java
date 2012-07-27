@@ -7,7 +7,6 @@ public class User {
 
     public User() {
         regularExpression = "[0-9]{3}-{1}[0-9]{4}";
-        ;
     }
 
     public User(String username, String password) throws Exception {
@@ -17,11 +16,10 @@ public class User {
     }
 
     private void setUsername(String username) throws Exception {
-        String regex = "";
         if (username.matches(regularExpression))
             this.username = username;
         else
-            throw new Exception("Invalid Username");
+            throw new IllegalArgumentException("Invalid Username");
     }
 
     public String getUsername() {

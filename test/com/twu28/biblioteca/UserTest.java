@@ -24,19 +24,9 @@ public class UserTest {
         assertEquals(user.confirmAuthentication("111-1113", "wrongPassword"), false);
     }
 
-    @Test
+    @Test(expected = IllegalArgumentException.class)
     public void testSetUsername() throws Exception {
-
-/* 
-try { 
-   Method method = User.getClass().getMethod("setUsername", String.class); 
-   method.setAccessible(true); 
-   method.invoke(<Object>, <Parameters>); 
-} catch(NoSuchMethodException e) { 
-} catch(IllegalAccessException e) { 
-} catch(InvocationTargetException e) { 
-} 
-*/
+        user = new User("1111111", "password");
     }
 
 } 
