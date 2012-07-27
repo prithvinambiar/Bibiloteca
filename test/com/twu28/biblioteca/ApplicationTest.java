@@ -13,11 +13,13 @@ public class ApplicationTest {
 
     private Application application;
     private Book mockedBook;
+    private User mockedUser;
 
     @Before
     public void before() throws Exception {
         application = new Application();
         mockedBook = mock(Book.class);
+        mockedUser = mock(User.class);
     }
 
     @After
@@ -34,4 +36,12 @@ public class ApplicationTest {
         verify(mockedBook).reserveBook();
     }
 
+    @Test
+    public void testAuthenticateUser() throws Exception {
+        Method method = Application.class.getDeclaredMethod("authenticateUser", User.class, String.class, String.class);
+        method.setAccessible(true);
+        method.invoke(application, mockedUser, "111-1111", "password");
+
+        verify(mockedUser).confirmAuthentication("111-1111", "password");
+    }
 } 

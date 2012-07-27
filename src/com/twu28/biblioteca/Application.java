@@ -101,6 +101,11 @@ public class Application {
         return null;
     }
 
+    private void authenticateUser(User user, String username, String password) {
+        if (user.confirmAuthentication(username, password))
+            loggedInUser = user;
+    }
+
     private void getCredentialsAndAuthenticate() {
         User user;
         System.out.print("Enter the username   :   ");
@@ -108,8 +113,7 @@ public class Application {
         System.out.print("Enter the password   :    ");
         String password = readInput();
         user = findUserByUsername(username);
-        if (user.confirmAuthentication(username, password))
-            loggedInUser = user;
+        authenticateUser(user, username, password);
     }
 
     public void displayBooks() {
