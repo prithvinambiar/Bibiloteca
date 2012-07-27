@@ -20,6 +20,12 @@ public class Launch {
                 application.getLibraryNumber();
                 return true;
             case 4:
+                application.getMovieList();
+                return true;
+            case 5:
+                application.login();
+                return true;
+            case 6:
                 return false;
             default:
                 System.out.println("Please Select a Valid Option");
@@ -32,7 +38,7 @@ public class Launch {
 
         System.out.println("Welcome to Biblioteca");
         do {
-            System.out.print("1- View All Books\n2- Reserve a Book\n3- Check Library Number\n4- Exit\nEnter your choice - ");
+            System.out.print("1- View All Books\n2- Reserve a Book\n3- Check Library Number\n4- View Movie List\n5- Login\n6- Exit\nEnter your choice - ");
             String input = application.readInput();
             try {
                 controlWhileLoop = findInputAction(Integer.parseInt(input));
